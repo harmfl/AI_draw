@@ -13,7 +13,6 @@
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
-<br />
 
 <p align="center">
   <!-- <a href="https://github.com/harmfl/AI_draw/blob/master/AI_analyse/static/logo2.jpg"> -->
@@ -34,7 +33,7 @@
     <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" />
   </a>
   <br>
-  <a href="https://github.com/WLtao5023/ai_draw1"><strong>探索本项目的文档</strong></a>
+  <a href="https://github.com/harmfl/AI_draw/blob/master/README.md"><strong>探索本项目的文档</strong></a>
   <br />
   <!-- 插入徽章 -->
   <br />
