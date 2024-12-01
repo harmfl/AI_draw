@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ drawing.DrawingName }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'AppreciationOfDrawing/css/AppreciationOfDrawing.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .detail-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .detail-header h1 {
+            font-size: 3rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .detail-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .detail-image-wrapper {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .detail-image {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .detail-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .detail-info strong {
+            color: #555;
+        }
+
+        .story-section {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .story-section button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .story-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .story-section textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            resize: none;
+            height: 200px; /* 增大文本框 */
+        }
+
+        .detail-footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .detail-info {
+                grid-template-columns: 1fr;
+            }
+
+            .story-section button {
+                font-size: 1rem;
+            }
+
+            .story-section textarea {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="detail-container">
+        <div class="detail-header">
+            <h1>{{ drawing.DrawingName }}</h1>
+        </div>
+        <div class="detail-content">
+            <div class="detail-image-wrapper">
+                <img id="drawing-image" src="{{ drawing.DrawingPicture.url }}" data-drawing-id="{{ drawing.DrawingID }}" alt="{{ drawing.DrawingName }}" class="detail-image">
+            </div>
+            <div class="detail-info">
+                <p><strong>作者:</strong> {{ drawing.feekback }}</p>
+                <p><strong>标签:</strong> {{ drawing.DrawingTag }}</p>
+                <p><strong>创建时间:</strong> {{ drawing.DrawingYear }}</p>
+                <p><strong>点赞数:</strong> <span id="likes_count">{{ drawing.likes }}</span></p>
+                <p><strong>浏览量:</strong> {{ drawing.views }}</p>
+            </div>
+        </div>
+
+        <!-- AI 介绍功能 -->
+        <div class="story-section">
+            <button id="generate-story-btn">生成AI介绍</button>
+            <textarea id="story-container" readonly placeholder="点击按钮获取AI描述"></textarea>
+        </div>
+
+        <div class="detail-footer">
+            © 2024 AI 绘画平台
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generate-story-btn').addEventListener('click', () => {
+            const imgElement = document.getElementById('drawing-image');
+            const drawingId = imgElement.dataset.drawingId;
+
+            if (!drawingId) {
+                console.error('画作 ID 缺失');
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = imgElement.naturalWidth;
+            canvas.height = imgElement.naturalHeight;
+            context.drawImage(imgElement, 0, 0);
+
+            const imageData = canvas.toDataURL('image/jpeg');
+
+            fetch('/Drawing/generate_story/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    image_data: imageData,
+                    drawing_id: drawingId,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('story-container').innerText = data.story;
+                } else {
+                    console.error('错误:', data.message);
+                }
+            })
+            .catch(error => console.error('请求失败:', error));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "draw/draw_history.html" %}
+{% block content %}
+<div class="upload-container">
+    <h2>上传画作</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">上传</button>
+    </form>
+    <a href="{% url 'history' %}" class="btn btn-secondary">返回</a>
+</div>
+{% endblock %}

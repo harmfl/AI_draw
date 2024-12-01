@@ -1,0 +1,371 @@
+.top-box {
+    /*background-color: red;*/
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* 增加左右内边距 */
+}
+
+.top-logo-title {
+    display: flex;
+    align-items: center;
+    max-width: 30%;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    /*background-color: #00d2ff;*/
+}
+
+.logo-image {
+    max-height: 100%;
+    width: auto;
+    margin: 0 10px;
+}
+
+.title-font {
+    margin: 0 0 0 50px;
+    font-family: 'Arial', sans-serif;
+    font-size: 2rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    align-content: center;
+}
+
+.top-register-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 12px;
+    /*padding: 10px 20px;*/
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    height: 100%;
+    width: 15%;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    position: relative; /* 确保弹窗相对定位 */
+    margin-right: 20px;
+}
+
+.iconfont {
+    /*font-family: "iconfont" !important;*/
+    font-size: 25px !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.modal {
+    display: none; /* 默认隐藏 */
+    position: absolute;
+    top: 100%; /* 弹窗位置在 .top-register-login 下方 */
+    left: 50%; /* 水平居中 */
+    transform: translate(-50%, 10px); /* 调整水平和垂直位置 */
+    width: 80%;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    z-index: 10;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-close {
+    cursor: pointer;
+    color: red;
+    float: right;
+    font-size: 20px;
+}
+
+/* 美化按钮 */
+.switch-user {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: linear-gradient(135deg, #f5f5f5, #ddd);
+    color: #333;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#switch-user:hover {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 悬停时阴影 */
+}
+
+#switch-user .icon {
+    margin-right: 5px;
+    font-size: 25px;
+}
+
+.middle-box {
+    margin: 15px auto;
+    /*background-color: red;*/
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: space-between; /* 修改为 space-between 确保左右两部分填充整个容器 */
+}
+
+.middle-left {
+    /*background-color: firebrick;*/
+    width: 65%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between; /* 使用 space-between 确保每个子元素均匀分布 */
+    padding-right: 15px ;
+}
+
+.middle-right {
+    /*background-color: #550af7;*/
+    width: 35%;
+    height: 100%;
+    display: flex;
+    margin: 0px 10px 0px 0px;
+}
+
+.middle-li {
+    /*background-color: #00d2ff;*/
+    width: 17%; /* 确保每个 .middle-li 占据 20% 的宽度 */
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    /*margin:10px;*/
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    /*margin: 0px 30px 0px 30px;*/
+}
+/* 为按钮容器设置基础样式 */
+.button-hover {
+    background-color: #ffffff; /* 基础背景色 */
+    border-radius: 10px;       /* 边角圆滑 */
+    /*padding: 10px 20px;        !* 内边距 *!*/
+    display: flex;
+    /* 使得每个按钮独立占据块级区域 */
+
+    /*margin: 10px;              !* 每个按钮的外边距 *!*/
+    transition: all 0.3s ease; /* 添加平滑过渡效果 */
+    font-size: 16px;           /* 字体大小 */
+    cursor: pointer;           /* 鼠标悬停时显示为手形 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 添加阴影使其更加立体 */
+}
+
+/* 鼠标悬停效果 */
+.button-hover:hover {
+    background-color: #f0f0f0; /* 悬停时背景变为浅灰色 */
+    transform: scale(1.05);    /* 放大 5% */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 增加阴影使得按钮悬浮感更强 */
+}
+
+.middle-botton{
+    /*background-color: #007BFF;*/
+    width: 70%;
+    height: 60px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.middle-find{
+    background-color: #550af7;
+    width: 20%;
+    height: 100%;
+}
+
+
+.iconfont {
+    /*font-family: "iconfont" !important;*/
+    font-size: 25px !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+
+
+
+
+/* 更新 art-box 样式，调整卡片布局 */
+.art-box {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* 元素之间的间距 */
+    justify-content: space-around;
+    padding: 20px;
+    width: 80%;
+}
+
+/* 更新 art-card 样式 */
+.art-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* 调整宽度以保持一致的外观 */
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px; /* 卡片之间的垂直间距 */
+    position: relative;
+}
+
+/* 更新图片样式，确保比例一致且不被拉伸 */
+.art-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.art-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持图片比例且不会被拉伸 */
+}
+
+/* 更新卡片内部信息的样式 */
+.art-info {
+    margin-top: 15px;
+    color: #333;
+}
+
+.art-info h3 {
+    color: #5a5aff; /* 标题颜色，调亮以增强可读性 */
+    font-weight: bold;
+}
+
+/* 按钮样式更新 */
+.art-info button {
+    padding: 10px 15px;
+    margin-top: 15px;
+    background-color: #ff5a5f;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.art-info button:hover {
+    background-color: #ff787b; /* 增加悬停效果 */
+}
+
+
+
+
+
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination .step-links a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #007bff;
+}
+/* 去除 a 标签的默认下划线和颜色变化 */
+.art-link {
+    text-decoration: none;  /* 去除下划线 */
+    color: #333;            /* 改为你想要的颜色，例如深灰色 */
+}
+
+/* 当 a 标签被悬停时的效果 */
+.art-link:hover {
+    color: #5a5aff;         /* 可以设置一个更亮的颜色作为悬停效果 */
+    text-decoration: none;  /* 悬停时也去除下划线 */
+}
+
+
+
+
+
+
+
+
+
+
+/* 点赞和收藏按钮的基础样式 */
+.art-button {
+    padding: 10px 20px;               /* 调整按钮的内边距 */
+    margin-top: 10px;                 /* 增加按钮之间的间距 */
+    background-color: #ff5a5f;        /* 按钮背景颜色 */
+    color: #ffffff;                   /* 按钮文字颜色 */
+    border: none;                     /* 去除默认边框 */
+    border-radius: 5px;               /* 增加圆角 */
+    cursor: pointer;                  /* 鼠标悬停时显示手型 */
+    font-size: 14px;                  /* 字体大小 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);  /* 增加按钮的阴影效果 */
+}
+
+/* 按钮悬停时的效果 */
+.art-button:hover {
+    background-color: #ff787b;        /* 悬停时背景颜色变化 */
+}
+
+/* 如果需要不同类型按钮的样式，例如点赞和收藏分别设置不同颜色 */
+.like-button {
+    background-color: #4CAF50;        /* 绿色背景，表示“点赞” */
+}
+
+.like-button:hover {
+    background-color: #45a049;        /* 悬停时绿色加深 */
+}
+
+.favorite-button {
+    background-color: #ff9800;        /* 橙色背景，表示“收藏” */
+}
+
+.favorite-button:hover {
+    background-color: #e68900;        /* 悬停时橙色加深 */
+}
+
+
+.search-form {
+    display: flex;
+    align-items: center; /* 确保所有输入框和按钮垂直居中 */
+    justify-content: center; /* 水平居中整个搜索栏 */
+    gap: 10px; /* 为每个元素之间增加间距 */
+    margin: 20px 0; /* 上下增加一些空间，使搜索栏与其他元素分开 */
+}
+
+.search-input, .search-select, .search-button {
+    height: 40px; /* 设置一致的高度 */
+    padding: 5px; /* 设置内边距，保证文字与边框之间有足够的距离 */
+    font-size: 16px; /* 设置字体大小 */
+    border-radius: 5px; /* 增加圆角，使其看起来更美观 */
+    border: 1px solid #ccc; /* 给输入框和按钮加个浅色的边框 */
+}
+
+.search-button {
+    background-color: #4CAF50; /* 按钮背景色 */
+    color: #fff; /* 按钮文字颜色 */
+    cursor: pointer; /* 鼠标悬停显示为手形 */
+    border: none; /* 去除按钮默认的边框 */
+}
+
+.search-button:hover {
+    background-color: #45a049; /* 悬停时按钮背景变暗一些 */
+}

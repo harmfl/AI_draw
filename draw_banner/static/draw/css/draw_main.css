@@ -1,0 +1,348 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+/*@font-face {*/
+/*  font-family: 'iconfont-draw';  !* Project id 4730545 *!*/
+/*  src: url('//at.alicdn.com/t/c/font_4730545_sl8bc3cjlf.eot?t=1730376092894'); !* IE9 *!*/
+/*  src: url('//at.alicdn.com/t/c/font_4730545_sl8bc3cjlf.eot?t=1730376092894#iefix') format('embedded-opentype'), !* IE6-IE8 *!*/
+/*       url('//at.alicdn.com/t/c/font_4730545_sl8bc3cjlf.woff2?t=1730376092894') format('woff2'),*/
+/*       url('//at.alicdn.com/t/c/font_4730545_sl8bc3cjlf.woff?t=1730376092894') format('woff'),*/
+/*       url('//at.alicdn.com/t/c/font_4730545_sl8bc3cjlf.ttf?t=1730376092894') format('truetype'),*/
+/*       url('//at.alicdn.com/t/c/font_4730545_sl8bc3cjlf.svg?t=1730376092894#iconfont-draw') format('svg');*/
+/*}*/
+/* 设置整个页面的背景图片 */
+/*body {*/
+/*    background-image: url("{% static 'draw/img/nailong.jpg' %}"); !* 使用 url() 语法 *!*/
+/*    background-size: cover;            !* 让图片覆盖整个页面 *!*/
+/*    background-position: center;       !* 图片居中 *!*/
+/*    background-repeat: no-repeat;      !* 防止背景图片重复 *!*/
+/*    background-attachment: fixed;      !* 固定背景图片，使其不随滚动移动 *!*/
+/*}*/
+/* 顶部容器 */
+.top-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height:60px;
+    padding: 0 20px;
+    /*background-color: red;*/
+
+}
+
+/* 左侧 logo 和标题 */
+.top-logo-title {
+    display: flex;
+    align-items: center; /* 保持图片和文字垂直居中 */
+    /*background-color: #00d2ff;*/
+    max-width: 30%; /* 设置最大宽度以避免图片超出 */
+    width: 50%;
+    height: 100%; /* 让其填充父容器高度 */
+    /*padding-right: 10px; !* 添加右边距使其与右侧文字保持间距 *!*/
+    box-sizing: border-box;
+    /*padding: 20px;*/
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+/* logo 图片样式 */
+.logo-image {
+    max-height: 120%; /* 确保图片高度不超出容器 */
+    width: auto; /* 保持图片宽高比例 */
+    /*margin-right: 10px; !* 图片和文字之间的间距 *!*/
+    margin: 0px 10px 0px 10px ;
+}
+
+/* 标题文字样式 */
+.title-font {
+    /*font-size: 1rem;*/
+    /*color: #000;*/
+    /*margin-left: auto; !* 将文字推到容器的最右侧 *!*/
+    /*margin-left: auto;*/
+    margin:0px 0px 0px 50px ;
+     font-family: 'Arial', sans-serif; /* 修改为适合的字体 */
+    font-size: 2rem; /* 适当调整字体大小 */
+    color: #ffffff; /* 设置文字颜色 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* 增加文字阴影 */
+    font-weight: bold; /* 加粗 */
+    letter-spacing: 2px; /* 增加字间距 */
+    text-transform: uppercase; /* 全部转换为大写 */
+}
+
+/* 右侧注册登录区域 */
+.top-register-login {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white; /* 白色背景 */
+    border-radius: 12px; /* 圆角 */
+    padding: 10px; /* 内边距 */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* 阴影 */
+    height: 100%;
+    width: 20%;
+    transition: background-color 0.3s ease; /* 平滑过渡效果 */
+}
+
+/* 登录和注册的图标样式 */
+.iconfont {
+    font-family: "iconfont-draw" !important;
+    font-size: 28px;
+    font-style: normal;
+    color: #333; /* 默认字体颜色 */
+    margin-right: 5px; /* 图标和文字之间的间距 */
+    transition: color 0.3s ease; /* 颜色平滑过渡 */
+}
+
+/* 登录和注册的文字样式 */
+.resigster {
+    font-size: 18px; /* 适中的字体大小 */
+    font-weight: 500;
+    color: #333; /* 默认字体颜色 */
+    text-decoration: none; /* 去除下划线 */
+    display: flex;
+    align-items: center;
+    padding: 8px 12px; /* 内边距 */
+    border-radius: 8px; /* 圆角 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 背景色和文字颜色平滑过渡 */
+}
+
+/* 悬停效果 */
+.resigster:hover {
+   background-color: #e0f7fa; /* 鼠标悬停时的背景色 */
+    /*color: white; !* 悬停时文字颜色 *!*/
+    color: #007BFF; /* 悬停时的文字颜色 */
+}
+
+.top-register-login a:hover .iconfont {
+    /*color: white; !* 悬停时图标颜色 *!*/
+    color: #007BFF; /* 悬停时的文字颜色 */
+}
+
+/* 调整注册和登录按钮的距离 */
+.top-register-login a {
+    margin: 0 10px; /* 左右各10px的间距 */
+
+}
+
+
+.choose-box {
+    display: flex;
+    justify-content: space-around; /* 按钮均匀分布 */
+    align-items: center;
+    width: 80%;
+    height: 80px;
+    margin: 20px auto;
+    background-color: white; /* 白色背景 */
+    border-radius: 12px; /* 圆角边框 */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+    padding: 10px; /* 内边距，防止文字过于贴近边框 */
+}
+
+.choose a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+}
+
+.choose {
+    display: flex;
+    width: 22%;
+    height: 100%;
+    background-color: #f0f8ff; /* 浅蓝色背景，给按钮微妙的颜色 */
+    justify-content: center;
+    align-items: center;
+    font-size: 20px; /* 字体大小适中 */
+    font-weight: bold; /* 加粗字体 */
+    letter-spacing: 1px;
+    color: #333333; /* 按钮文字颜色，避免太刺眼 */
+    border-radius: 8px; /* 每个按钮的小圆角 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* 每个按钮的轻微阴影 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.choose:hover {
+    background-color: #e0f7fa; /* 鼠标悬停时的背景色 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* 增加阴影 */
+    transform: translateY(-2px); /* 微微向上提升 */
+    color: #007BFF; /* 悬停时的文字颜色 */
+}
+
+
+.carousel{
+    display: flex;
+    width: 70%;
+    height: 300px;
+    background: red;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.midle-box{
+    /*background: red;*/
+    display: flex;
+    width: 80%;
+    height: 320px;
+    justify-content: space-between;
+    align-items:center;
+    margin: 20px auto;
+}
+
+.midle-carousel-box{
+    /*background-color: #00d2ff;*/
+    height: 100%;
+    width: 35%;
+    margin: 5px;
+}
+
+.midle-information{
+        cursor: default;
+        font-size: 22px;
+        font-weight: bold;
+        color: #eba102;
+        border-bottom: 1px solid #eba102;
+
+}
+
+.midle-profession{
+        cursor: default;
+        font-size: 22px;
+        font-weight: bold;
+        color: #eba102;
+        border-bottom: 1px solid #eba102
+}
+
+.information-spacial{
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 17px;
+    /*margin: 2px 5px 0px 0px;*/
+    list-style-type: disc; /* 确保使用圆点样式 */
+    padding-left: 20px; /* 给列表增加左边距，使圆点更清晰 */
+    color: red;
+    margin-top: 10px;
+}
+
+.information{
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*font-size: 17px;*/
+    /*margin: 2px 5px 0px 0px;*/
+    list-style-type: disc; /* 确保使用圆点样式 */
+    padding-left: 20px; /* 给列表增加左边距，使圆点更清晰 */
+    font: 16px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
+}
+.activity-box {
+    display: flex;
+    /*background: yellow;*/
+    height: 30%;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.draw_adress{
+    display: flex;
+    /*background-color: red;*/
+    width: 80%;
+    height: 60px;
+    margin: 30px auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.draw_spical {
+    display: flex;
+    gap: 20px;  /* 控制每个选项之间的距离 */
+    font-size: 22px;
+    width: 40%;
+    justify-content: flex-start;  /* 左对齐 */
+}
+
+.draw_spical div {
+    font-weight: normal;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+/* 原创选项样式 */
+.draw_spical .spical-orignal a {
+    color: green;
+    text-decoration: none;
+}
+
+/* 灵感选项样式 */
+.draw_spical .spical-genius a {
+    color: purple;
+    text-decoration: none;
+}
+
+/* 临摹选项样式 */
+.draw_spical .spical-copy a {
+    color: blue;
+    text-decoration: none;
+}
+
+/* active 类的高亮样式 */
+.draw_spical .active a {
+    font-weight: bold;  /* 仅在选中时加粗 */
+    color: green;  /* active 的颜色 */
+    border-bottom: 2px solid green;
+    padding-bottom: 4px;
+}
+
+/* 鼠标悬停效果 */
+.draw_spical div a:hover {
+    color: #ff4500;
+    text-decoration: underline;
+}
+.more-choose{
+    /*background-color: #00d2ff;*/
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+
+
+
+.artwork-gallery {
+    display: flex;
+    flex-wrap: wrap; /* 项目自动换行 */
+    justify-content: center; /* 水平居中对齐 */
+    gap: 20px; /* 增加项之间的间距 */
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto; /* 居中对齐 */
+}
+
+.artwork-item {
+    flex: 1 1 30%; /* 每个项目占据30%的宽度，并根据屏幕大小调整 */
+    max-width: 300px; /* 设置最大宽度，防止放大过大 */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 10px;
+    transition: transform 0.2s ease-in-out; /* 增加一个缩放效果 */
+}
+
+.artwork-item:hover {
+    transform: scale(1.05); /* 鼠标悬浮时放大 */
+}
+
+.artwork-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* 保持图片等比例缩放 */
+    border-bottom: 1px solid #ddd; /* 增加底部边框 */
+}
+

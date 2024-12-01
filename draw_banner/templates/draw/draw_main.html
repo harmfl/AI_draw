@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link REL="SHORTCUT ICON" HREF="{% static "favicon.ico" %}"/>
+    <link rel="stylesheet" href="{% static 'draw/css/draw_main.css' %}">
+    <link rel="stylesheet" href="{% static 'draw/css/draw_lunbo.css' %}">
+    <link href="http://at.alicdn.com/t/c/font_4730622_f6np77r4xf6.css" rel="stylesheet">
+     <style>
+        body {
+             background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("{% static 'draw/img/nailong.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-box">
+        <div class="top-logo-title">
+            <img src="{% static 'draw/img/_20241030175706.jpg' %}" height="170%"  >
+            <span class="title-font">童心绘语</span>
+
+        </div>
+        <div class="top-register-login">
+        {% if user.is_authenticated %}
+            <a class="resigster">
+                <span class="iconfont icon-denglu2 large-icon"></span>
+                <span>你好，{{ user.username }}</span>
+            </a>
+            <a href="/accounts/login/" class="resigster">
+                <span class="iconfont icon-tuichu large-icon"></span>
+                <span>切换账号</span>
+            </a>
+        {% else %}
+        <a href="/accounts/login/" class="resigster">
+            <span class="iconfont icon-denglu2 large-icon"></span>
+            <span>登录</span>
+        </a>
+        <a href="/accounts/register/" class="resigster">
+            <span class="iconfont icon-zhuce large-icon"></span>
+            <span>注册</span>
+        </a>
+    {% endif %}
+        </div>
+    </div>
+
+    <div class="choose-box">
+    <li class="choose"><a href="/draw/draw_banner/">儿童画画</a></li>
+    <li class="choose"><a href="/draw/history/">历史记录</a></li>
+    <li class="choose"><a href="/ai_analyse/">AI分析</a></li>
+    <li class="choose"><a href="/Drawing/drawings/">名画鉴赏</a></li>
+    </div>
+
+    <div class="carousel-container">
+    <div class="carousel-slide">
+        <img src="{% static 'draw/img/lunbo1.png' %}" alt="Slide 1">
+        <img src="{% static 'draw/img/lunbo2.png' %}" alt="Slide 2">
+        <img src="{% static 'draw/img/lunbo3.png' %}" alt="Slide 3">
+    </div>
+    <!-- 左右箭头 -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+</div>
+
+<!-- 页码指示点 -->
+<div class="carousel-dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+    <div class="midle-box">
+        <div class="new-carousel-container">
+    <div class="new-carousel-slide">
+        <img src="{% static 'draw/img/lunbo4.jpg' %}" alt="Slide 1">
+        <img src="{% static 'draw/img/lunbo5.jpg' %}" alt="Slide 2">
+        <img src="{% static 'draw/img/lunbo6.jpg' %}" alt="Slide 3">
+    </div>
+    <!-- 左右箭头 -->
+    <a class="new-prev" onclick="newChangeSlide(-1)">&#10094;</a>
+    <a class="new-next" onclick="newChangeSlide(1)">&#10095;</a>
+</div>
+
+<!-- 页码指示点 -->
+<div class="new-carousel-dots">
+    <span class="new-dot" onclick="newCurrentSlide(0)"></span>
+    <span class="new-dot" onclick="newCurrentSlide(1)"></span>
+    <span class="new-dot" onclick="newCurrentSlide(2)"></span>
+</div>
+
+        <div class="midle-carousel-box">
+            <div class="midle-information">活动资讯</div>
+            <li class="information-spacial">【新活动】“天才杯”儿童创意绘画评选活动征集方案</li>
+            <li class="information">“天才杯”儿童创意绘画评选活动通用版表格下载</li>
+            <li class="information">“天才杯”儿童创意绘画评选活动电子稿件报送方式</li>
+            <li class="information">全国学校美育工作推进会召开</li>
+            <li class="information">奋力书写改革新答卷——广大知识分子和青年学生掀起学习贯彻党的二十届三中全会精神热潮</li>
+
+            <li class="information-spacial">教育部高校毕业生就业研究院（基地）专家委员会成立大会暨第一次全体会议举行</li>
+            <li class="information">教育部党组传达学习习近平总书记等中央领导同志重要讲话和有关指示批示精神</li>
+            <li class="information">教育部印发通知部署开展2023年全国普通高等学校音乐教育专业、美术教育专业本科学生和教师基本功展示</li>
+            <li class="information">教育部公布新时代职业学校名师（名匠）名校长培养计划（2023—2025年）培养对象和培养基地名单</li>
+            <li class="information">教育部党组部署做好秋季开学安全准备工作</li>
+        </div>
+        <div class="midle-carousel-box">
+            <div class="midle-profession">活动专题</div>
+            <div class="activity-box">
+                    <img src="{% static 'draw/img/b2604e45-eaea-4eaa-9899-3a614e8eac41.png' %}"  >
+                    <div style="margin-left: 5px"> 2024年度（下）“天才杯”儿童创意绘画评选活动</div>
+            </div>
+            <div class="activity-box" >
+                    <img src="{% static 'draw/img/d005695c-37d1-4826-aefa-0c8ad9b19bf9.png' %}"  >
+                <div style="margin-left: 5px"> 2024年度（上）“天才杯”儿童创意绘画评选活动</div>
+            </div>
+            <div class="activity-box">
+                <img src="{% static 'draw/img/53d46e28-ab32-4ae2-aadf-2d7b04866874.jpg' %} " width="100%"  >
+            </div>
+        </div>
+    </div>
+    <div class="draw_adress">
+        <div class="draw_spical nav-bar">
+    <div class="spical-orignal"><a href="{% url 'artwork_gallery' 'original' %}" class="{% if category == 'original' %}active{% endif %}">原创</a></div>
+    <div class="spical-genius"><a href="{% url 'artwork_gallery' 'inspiration' %}" class="{% if category == 'inspiration' %}active{% endif %}">灵感</a></div>
+    <div class="spical-copy"><a href="{% url 'artwork_gallery' 'copy' %}" class="{% if category == 'copy' %}active{% endif %}">临摹</a></div>
+</div>
+        <div class="more-choose"> 更多选择</div>
+    </div>
+     <div class="artwork-gallery">
+     {% include "draw/partial_artwork_gallery.html" %}
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   $(document).ready(function() {
+    $('.draw_spical a').click(function(e) {
+        e.preventDefault();
+        const url = $(this).attr('href');
+        console.log("Requesting URL: ", url);  // 确认请求的URL是否正确
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            success: function(data) {
+                console.log("Full AJAX response data:", data); // 输出返回的完整 HTML
+
+                // 将返回的 data 直接插入到 .artwork-gallery 容器中
+                $('.artwork-gallery').html(data);
+
+                // 强制重绘
+                document.querySelector('.artwork-gallery').style.display = 'none';
+                document.querySelector('.artwork-gallery').offsetHeight; // 强制重绘
+                document.querySelector('.artwork-gallery').style.display = '';
+
+                // 强制重新加载 CSS
+                $('link[rel="stylesheet"]').each(function() {
+                    $(this).attr('href', $(this).attr('href').split('?')[0] + '?v=' + new Date().getTime());
+                });
+
+                console.log("Loaded gallery content successfully.");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("AJAX request failed:", textStatus, errorThrown);
+                alert("加载失败，请检查服务器配置。");
+            }
+        });
+
+        $('.draw_spical a').removeClass('active');
+        $(this).addClass('active');
+    });
+});
+
+
+</script>
+<script src="{% static 'draw/js/draw_main.js' %}"></script>
+</body>
+</html>

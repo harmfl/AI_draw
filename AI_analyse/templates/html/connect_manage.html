@@ -1,0 +1,335 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI分析</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'logo2.jpg' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div class="scroll-sidebar" data-simplebar>
+        <div class="d-flex mb-4 align-items-center justify-content-between">
+            <a href="/draw_main/" class="text-nowrap logo-img ms-0 ms-md-1">
+            <img src="{% static 'logo2.jpg' %}" alt="Logo" style="width: 60px; margin-right: 10px; margin-bottom: 9px;">
+                <span style="font-size: 30px; font-weight: bold;">童心绘语</span>
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+              <i class="ti ti-x fs-8"></i>
+            </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+          <ul id="sidebarnav" class="mb-4 pb-2">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">管理</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link primary-hover-bg"
+                href="/ai_analyse/"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-primary rounded-3">
+                  <i class="fa fa-connectdevelop" style="color: #3A90D4;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">账号关联</span>
+              </a>
+            </li>
+              <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link primary-hover-bg"
+                href="/ai_analyse/connect_manage/"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-primary rounded-3">
+                  <i class="fa fa-address-card" style="color: #3A90D4;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">管理关联</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">功能区</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="/ai_analyse/view_painting"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="fa fa-image" style="color: #F1A74A;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">查看画作</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link danger-hover-bg"
+                href="/ai_analyse/camera_record"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="fa fa-camera" style="color: #F89C7D;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">摄像头</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="/ai_analyse/ai_analyse_camera"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                 <i class="fa fa-user-circle" style="color: #7CC29F;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">AI行为分析</span>
+              </a>
+            </li>
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link primary-hover-bg"#}
+{#                href="./ui-forms.html"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-primary rounded-3">#}
+{#                  <i class="ti ti-file-description fs-7 text-primary"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">学生信息</span>#}
+{#              </a>#}
+{#            </li>#}
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link indigo-hover-bg"#}
+{#                href="/ai_analyse/dashboard"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-indigo rounded-3">#}
+{#                  <i class="ti ti-typography fs-7 text-indigo"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">仪表盘</span>#}
+{#              </a>#}
+{#            </li>#}
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">账号切换</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="/accounts/login"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="fa fa-level-up" style="color: #D98B54;"></i>
+
+                </span>
+                <span class="hide-menu ms-2 ps-1">登入新账号</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link danger-hover-bg"
+                href="/accounts/register"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="fa fa-registered" style="color: #F77D62;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">注册新账号</span>
+              </a>
+            </li>
+{#            <li class="nav-small-cap">#}
+{#              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>#}
+{#              <span class="hide-menu">Extra</span>#}
+{#            </li>#}
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link success-hover-bg"#}
+{#                href="./icon-tabler.html"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-success rounded-3">#}
+{#                  <i class="ti ti-mood-happy fs-7 text-success"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">Icons</span>#}
+{#              </a>#}
+{#            </li>#}
+          </ul>
+{#          <div class="pb-3 options text-nowrap">#}
+{#            <div class="nav-small-cap">#}
+{#              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>#}
+{#              <span class="hide-menu">More options</span>#}
+{#            </div>#}
+{##}
+{#            <ul class="sidebar-list">#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-primary fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Applications</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-danger fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Form Options</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-warning fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Table Variations</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-success fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Charts Selection</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-indigo fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Widgets</span>#}
+{#              </li>#}
+{#            </ul>#}
+{#          </div>#}
+
+
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <a target="_blank" class="btn btn-primary">你好，{{ display }}</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="{% static 'arc.jpg' %}" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+{#                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">#}
+{#                      <i class="ti ti-user fs-6"></i>#}
+{#                      <p class="mb-0 fs-3">My Profile</p>#}
+{#                    </a>#}
+{#                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">#}
+{#                      <i class="ti ti-mail fs-6"></i>#}
+{#                      <p class="mb-0 fs-3">My Account</p>#}
+{#                    </a>#}
+{#                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">#}
+{#                      <i class="ti ti-list-check fs-6"></i>#}
+{#                      <p class="mb-0 fs-3">My Task</p>#}
+{#                    </a>#}
+                   <a href="/accounts/login/" class="btn btn-outline-primary mx-3 mt-2 d-block shadow-none">切换账号</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">管理关联学生</h5>
+              <div class="card mb-0">
+{#                <div class="card-body p-4">#}
+                <!-- 学生信息表单 -->
+                <form method="post">
+                    {% csrf_token %}
+                    {% if messages %}
+                                <div>
+                                    {% for message in messages %}
+                                    <div class="alert {% if message.tags == 'success' %}alert-primary{% elif message.tags == 'error' %}alert-danger{% endif %}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>学生账号</th>
+                                <th>学生密码</th>
+                                <th>学生姓名</th>
+                                <th>学生手机号</th>
+                                <th>学生性别</th>
+                                <th>学生照片</th>
+                                <th>与学生的关系</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{ student.student.user.username }}</td>
+                                <td>{{ student.student_code }}</td>
+                                <td>{{ student.student_name }}</td>
+                                <td>{{ student.student_phone }}</td>
+                                <td>{{ student.student_sex }}</td>
+                                <td>
+                                    {% if student.student_image %}
+                                    <img src="{{ student.student_image.url }}" alt="学生照片" width="100">
+                                    {% else %}
+                                    无照片
+                                    {% endif %}
+                                </td>
+                                <td>{{ student.relationship }}</td>
+                                <td>
+                                    <button type="submit" name="delete_student" value="{{ student.id }}" class="btn btn-danger">
+                                        删除
+                                    </button>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="8" class="text-center">无关联学生信息</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+{#                </div>#}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/sidebarmenu.js' %}"></script>
+  <script src="{% static 'assets/js/app.min.js' %}"></script>
+  <script src="{% static 'assets/libs/simplebar/dist/simplebar.js' %}"></script>
+</body>
+
+</html>

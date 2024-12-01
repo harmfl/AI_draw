@@ -1,0 +1,27 @@
+[
+    {
+        "frame": 294,
+        "label": "sad",
+        "confidence": 0.36
+    },
+    {
+        "frame": 295,
+        "label": "sad",
+        "confidence": 0.38
+    },
+    {
+        "frame": 296,
+        "label": "sad",
+        "confidence": 0.42
+    },
+    {
+        "frame": 297,
+        "label": "sad",
+        "confidence": 0.43
+    },
+    {
+        "frame": 298,
+        "label": "sad",
+        "confidence": 0.26
+    }
+]

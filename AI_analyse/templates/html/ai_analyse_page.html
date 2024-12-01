@@ -1,0 +1,411 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    /* 模态框遮罩层 */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .modal-content {
+        width: 60%;
+    }
+    .modalVideo {
+        width:100%;
+    }
+    .modal .modal-dialog {
+        max-width: 90%;
+    }
+    .artwork-item img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+</style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI分析</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'logo2.jpg' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div class="scroll-sidebar" data-simplebar>
+        <div class="d-flex mb-4 align-items-center justify-content-between">
+            <a href="/draw_main/" class="text-nowrap logo-img ms-0 ms-md-1">
+            <img src="{% static 'logo2.jpg' %}" alt="Logo" style="width: 60px; margin-right: 10px; margin-bottom: 9px;">
+                <span style="font-size: 30px; font-weight: bold;">童心绘语</span>
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+              <i class="ti ti-x fs-8"></i>
+            </div>
+        </div>
+        <!-- Sidebar navigation-->
+<nav class="sidebar-nav">
+          <ul id="sidebarnav" class="mb-4 pb-2">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">管理</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link primary-hover-bg"
+                href="/ai_analyse/"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-primary rounded-3">
+                  <i class="fa fa-connectdevelop" style="color: #3A90D4;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">账号关联</span>
+              </a>
+            </li>
+              <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link primary-hover-bg"
+                href="/ai_analyse/connect_manage/"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-primary rounded-3">
+                  <i class="fa fa-address-card" style="color: #3A90D4;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">管理关联</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">功能区</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="/ai_analyse/view_painting"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="fa fa-image" style="color: #F1A74A;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">查看画作</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link danger-hover-bg"
+                href="/ai_analyse/camera_record"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="fa fa-camera" style="color: #F89C7D;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">摄像头</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="/ai_analyse/ai_analyse_camera"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                 <i class="fa fa-user-circle" style="color: #7CC29F;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">AI行为分析</span>
+              </a>
+            </li>
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link primary-hover-bg"#}
+{#                href="./ui-forms.html"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-primary rounded-3">#}
+{#                  <i class="ti ti-file-description fs-7 text-primary"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">学生信息</span>#}
+{#              </a>#}
+{#            </li>#}
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link indigo-hover-bg"#}
+{#                href="/ai_analyse/dashboard"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-indigo rounded-3">#}
+{#                  <i class="ti ti-typography fs-7 text-indigo"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">仪表盘</span>#}
+{#              </a>#}
+{#            </li>#}
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">账号切换</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="/accounts/login"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="fa fa-level-up" style="color: #D98B54;"></i>
+
+                </span>
+                <span class="hide-menu ms-2 ps-1">登入新账号</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link danger-hover-bg"
+                href="/accounts/register"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="fa fa-registered" style="color: #F77D62;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">注册新账号</span>
+              </a>
+            </li>
+{#            <li class="nav-small-cap">#}
+{#              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>#}
+{#              <span class="hide-menu">Extra</span>#}
+{#            </li>#}
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link success-hover-bg"#}
+{#                href="./icon-tabler.html"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-success rounded-3">#}
+{#                  <i class="ti ti-mood-happy fs-7 text-success"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">Icons</span>#}
+{#              </a>#}
+{#            </li>#}
+          </ul>
+{#          <div class="pb-3 options text-nowrap">#}
+{#            <div class="nav-small-cap">#}
+{#              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>#}
+{#              <span class="hide-menu">More options</span>#}
+{#            </div>#}
+{##}
+{#            <ul class="sidebar-list">#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-primary fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Applications</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-danger fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Form Options</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-warning fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Table Variations</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-success fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Charts Selection</span>#}
+{#              </li>#}
+{#              <li class="sidebar-list-item">#}
+{#                <i class="ti ti-circle text-indigo fs-4"></i>#}
+{#                <span class="hide-menu ms-2">Widgets</span>#}
+{#              </li>#}
+{#            </ul>#}
+{#          </div>#}
+
+
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <a target="_blank" class="btn btn-primary">你好，{{ display }}</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="{% static 'arc.jpg' %}" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+{#                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">#}
+{#                      <i class="ti ti-user fs-6"></i>#}
+{#                      <p class="mb-0 fs-3">My Profile</p>#}
+{#                    </a>#}
+{#                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">#}
+{#                      <i class="ti ti-mail fs-6"></i>#}
+{#                      <p class="mb-0 fs-3">My Account</p>#}
+{#                    </a>#}
+{#                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">#}
+{#                      <i class="ti ti-list-check fs-6"></i>#}
+{#                      <p class="mb-0 fs-3">My Task</p>#}
+{#                    </a>#}
+                    <a href="/accounts/login/" class="btn btn-outline-primary mx-3 mt-2 d-block shadow-none">切换账号</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <div class="card mb-0">
+                  <form method="post" action="{% url 'ai_analyse_camera_post' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="student_select">请选择要分析的学生：</label>
+                        <select name="student_id" id="student_select" class="form-control" onchange="this.form.submit()">
+                            <option value="">请选择学生</option>
+                            {% for student in students %}
+                                <option value="{{ student.id }}" {% if selected_student and student.id == selected_student.id %}selected{% endif %}>
+                                    {{ student.student_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+                  <!-- 录影列表 -->
+                  <P></P>
+    <h3>当前学生：{{ selected_student.student_name }}</h3>
+
+{% if camera_list %}
+    <div class="camera-video-list" style="display: flex; flex-wrap: wrap; gap: 16px;">
+        {% for video in camera_list %}
+            <div class="video-item card" style="width: 20rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border: none;">
+                <div class="card-body">
+                    <!-- 使用创建时间作为录像名称 -->
+                    <h5 class="card-title"
+                        style="cursor: pointer;"
+                        onclick="openModal('{{ video.video_file.url }}', '{{ video.created_at|date:"Y年m月d日：H时i分" }} - {{ video.created_at|date:"H时i分" }}', '{{ video.feedback|default:"暂无留言" }}', '{{ video.ai_analyse_result|default:"暂无AI分析" }}')">
+                        {{ video.created_at|date:"Y年m月d日：" }}<br>{{ video.created_at|date:"H时i分" }} - {{ video.created_at|date:"H时i分" }}
+                    </h5>
+                    {% if video.video_file %}
+                        <div style="width: 100%; height: 200px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                            <video
+                                controls
+                                style="max-width: 100%; max-height: 100%; cursor: pointer;">
+                                <source src="{{ video.video_file.url }}" type="video/webm">
+                                您的浏览器不支持 video 标签。
+                            </video>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">无录像文件</p>
+                    {% endif %}
+                    <p class="card-text text-muted">创建时间：{{ video.created_at }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>该学生暂无录像</p>
+{% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/sidebarmenu.js' %}"></script>
+  <script src="{% static 'assets/js/app.min.js' %}"></script>
+  <script src="{% static 'assets/libs/simplebar/dist/simplebar.js' %}"></script>
+</body>
+
+</html>
+<!-- 模态框 -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="display: flex;">
+        <div class="modal-content" style="display: flex;">
+            <!-- 视频区域 -->
+            <div class="modal-body" style="flex: 0.4;">  <!-- 给视频区域分配40%空间 -->
+                <video class='modalVideo' id="modalVideo" controls style="height: auto;">
+                    您的浏览器不支持 video 标签。
+                </video>
+                <div id="videoDescription" class="mt-2 text-muted"></div>
+            </div>
+            <!-- AI分析区域 -->
+            <div class="modal-body" style="flex: 0.6; padding-left: 20px;">  <!-- 给AI分析区域分配60%空间 -->
+                <div id="aiAnalyseDescription" class="mt-2 text-muted"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(videoUrl, videoTitle, videoFeedback, aiAnalyseResult) {
+        // 获取模态框内的元素
+        var modalVideo = document.getElementById('modalVideo');
+        var videoDescription = document.getElementById('videoDescription');
+        var aiAnalyseDescription = document.getElementById('aiAnalyseDescription');
+
+        // 设置视频的源地址
+        modalVideo.src = videoUrl;
+
+        // 设置视频的标题和描述
+        videoDescription.innerHTML = `<strong>录像标题：</strong> ${videoTitle}`;
+
+        // 设置AI分析结果
+        aiAnalyseDescription.innerHTML = `<strong>AI分析结果：</strong><br>${aiAnalyseResult}`;
+
+        // 打开模态框
+        var videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
+        videoModal.show();
+    }
+</script>
+{#<script>#}
+{#    function openModal(imageUrl, title, feedback) {#}
+{#        // 设置模态框内容#}
+{#        document.getElementById('modal-image').src = imageUrl;#}
+{#        document.getElementById('modal-title').innerText = title;#}
+{#        document.getElementById('modal-feedback').innerText = feedback;#}
+{##}
+{#        // 显示模态框#}
+{#        document.getElementById('imageModal').style.display = 'block';#}
+{#    }#}
+{##}
+{#    function closeModal() {#}
+{#        // 隐藏模态框#}
+{#        document.getElementById('imageModal').style.display = 'none';#}
+{#    }#}
+{#</script>#}

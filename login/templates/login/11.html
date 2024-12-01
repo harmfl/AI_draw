@@ -1,0 +1,25 @@
+<!-- login/templates/login/register.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<body>
+    <h2>注册</h2>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- 渲染注册表单 -->
+        <button type="submit">注册</button>
+    </form>
+
+    <!-- 显示错误信息 -->
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <p >已有账号？<a href="{% url 'login' %}">登录</a></p>  <!-- 链接到登录页面 -->
+</body>
+</html>

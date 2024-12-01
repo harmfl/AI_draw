@@ -1,0 +1,97 @@
+[
+    {
+        "frame": 224,
+        "label": "sad",
+        "confidence": 0.47
+    },
+    {
+        "frame": 225,
+        "label": "sad",
+        "confidence": 0.46
+    },
+    {
+        "frame": 325,
+        "label": "sad",
+        "confidence": 0.31
+    },
+    {
+        "frame": 326,
+        "label": "sad",
+        "confidence": 0.41
+    },
+    {
+        "frame": 326,
+        "label": "sad",
+        "confidence": 0.32
+    },
+    {
+        "frame": 327,
+        "label": "sad",
+        "confidence": 0.37
+    },
+    {
+        "frame": 328,
+        "label": "sad",
+        "confidence": 0.29
+    },
+    {
+        "frame": 331,
+        "label": "sad",
+        "confidence": 0.41
+    },
+    {
+        "frame": 332,
+        "label": "sad",
+        "confidence": 0.27
+    },
+    {
+        "frame": 448,
+        "label": "sad",
+        "confidence": 0.27
+    },
+    {
+        "frame": 453,
+        "label": "sad",
+        "confidence": 0.32
+    },
+    {
+        "frame": 454,
+        "label": "sad",
+        "confidence": 0.33
+    },
+    {
+        "frame": 464,
+        "label": "sad",
+        "confidence": 0.49
+    },
+    {
+        "frame": 465,
+        "label": "sad",
+        "confidence": 0.49
+    },
+    {
+        "frame": 467,
+        "label": "sad",
+        "confidence": 0.35
+    },
+    {
+        "frame": 468,
+        "label": "sad",
+        "confidence": 0.31
+    },
+    {
+        "frame": 469,
+        "label": "sad",
+        "confidence": 0.43
+    },
+    {
+        "frame": 469,
+        "label": "sad",
+        "confidence": 0.3
+    },
+    {
+        "frame": 470,
+        "label": "sad",
+        "confidence": 0.26
+    }
+]

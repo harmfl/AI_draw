@@ -1,0 +1,424 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI分析</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'logo2.jpg' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}" />
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div class="scroll-sidebar" data-simplebar>
+        <div class="d-flex mb-4 align-items-center justify-content-between">
+            <a href="/draw_main/" class="text-nowrap logo-img ms-0 ms-md-1">
+                <img src="{% static 'logo2.jpg' %}" alt="Logo" style="width: 60px; margin-right: 10px; margin-bottom: 9px;">
+                <span style="font-size: 30px; font-weight: bold;">童心绘语</span>
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+              <i class="ti ti-x fs-8"></i>
+            </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+          <ul id="sidebarnav" class="mb-4 pb-2">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">管理</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link primary-hover-bg"
+                href="/ai_analyse/"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-primary rounded-3">
+                  <i class="fa fa-connectdevelop" style="color: #3A90D4;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">账号关联</span>
+              </a>
+            </li>
+              <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link primary-hover-bg"
+                href="/ai_analyse/connect_manage/"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-primary rounded-3">
+                  <i class="fa fa-address-card" style="color: #3A90D4;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">管理关联</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">功能区</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="/ai_analyse/view_painting"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="fa fa-image" style="color: #F1A74A;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">查看画作</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link danger-hover-bg"
+                href="/ai_analyse/camera_record"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="fa fa-camera" style="color: #F89C7D;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">摄像头</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="/ai_analyse/ai_analyse_camera"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                 <i class="fa fa-user-circle" style="color: #7CC29F;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">AI行为分析</span>
+              </a>
+            </li>
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link primary-hover-bg"#}
+{#                href="./ui-forms.html"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-primary rounded-3">#}
+{#                  <i class="ti ti-file-description fs-7 text-primary"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">学生信息</span>#}
+{#              </a>#}
+{#            </li>#}
+{#            <li class="sidebar-item">#}
+{#              <a#}
+{#                class="sidebar-link sidebar-link indigo-hover-bg"#}
+{#                href="/ai_analyse/dashboard"#}
+{#                aria-expanded="false"#}
+{#              >#}
+{#                <span class="aside-icon p-2 bg-light-indigo rounded-3">#}
+{#                  <i class="ti ti-typography fs-7 text-indigo"></i>#}
+{#                </span>#}
+{#                <span class="hide-menu ms-2 ps-1">仪表盘</span>#}
+{#              </a>#}
+{#            </li>#}
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">账号切换</span>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="/accounts/login"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="fa fa-level-up" style="color: #D98B54;"></i>
+
+                </span>
+                <span class="hide-menu ms-2 ps-1">登入新账号</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link danger-hover-bg"
+                href="/accounts/register"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="fa fa-registered" style="color: #F77D62;"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">注册新账号</span>
+              </a>
+            </li>
+
+          </ul>
+
+
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+               <a target="_blank" class="btn btn-primary">你好，{{ display }}</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="{% static 'arc.jpg' %}" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+
+                    <a href="/accounts/login/" class="btn btn-outline-primary mx-3 mt-2 d-block shadow-none">切换账号</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-10">
+                  <div class="">
+                    <h5 class="card-title fw-semibold">实时摄像头</h5>
+                  </div>
+
+                </div>
+{#                <div id="profit"></div>#}
+                  <img id="video-frame" src='{% static "logo2.jpg" %}' alt="视频加载中" style="width: 90%; height: 80%; object-fit: scale-down;" />
+{#                  <video id="camera-stream" autoplay></video>#}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12 col-sm-6">
+                <!-- Yearly Breakup -->
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-10 fw-semibold">选择要连接的学生</h5>
+                    <div class="row align-items-center">
+                        <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group" id="student-select-form">
+{#                            <label for="student_select"></label>#}
+                            <select name="student_select" id="student_select" class="form-control">
+                                <option value="">请选择学生</option>
+                                {% for student in students %}
+{#                                    <option value="{{ student.id }}">{{ student.student_name }}</option>#}
+                                     <option value="{{ student.id }}" {% if selected_student and student.id == selected_student.id %}selected{% endif %}>
+                                        {{ student.student_name }}
+                                     </option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                        </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12 col-sm-6">
+                <!-- Monthly Earnings -->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                          <h5 class="card-title mb-n1 fw-semibold">摄像头状态</h5>
+
+                      </div>
+                        <h6 class="mb-3 fw" style="font-size: 0.8em; color: gray;margin-top: 8px">摄像头只有在学生进入作画页面时才会开启</h6>
+                        <h6 class="mb-1 fw" style="margin-bottom: 5px; display: flex; align-items: center;">
+                            摄像头情况：<a id="connection-status" style="font-weight: bold"></a>
+                        </h6>
+                    </div>
+                  </div>
+{#                  <div id="earning"></div>#}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/sidebarmenu.js' %}"></script>
+  <script src="{% static 'assets/js/app.min.js' %}"></script>
+  <script src="{% static 'assets/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/libs/simplebar/dist/simplebar.js' %}"></script>
+{#  <script src="{% static 'assets/js/dashboard.js' %}"></script>#}
+</body>
+
+</html>
+
+<script>
+    let videoElement = document.getElementById('video-frame');
+    let currentWebSocket = null;
+    let currentController = null; // 用于控制请求取消
+    let isFetching = false; // 标志当前是否有请求正在处理中
+    let connectionStatus = document.getElementById('connection-status')
+    let video_rate = document.getElementById('video-rate')
+
+    let studentSelectElement = document.getElementById('student_select');
+    if (studentSelectElement) {
+        studentSelectElement.addEventListener('change', function () {
+            let studentId = this.value;
+
+            // 检查是否选择了有效的学生 ID
+            if (studentId) {
+                // 取消之前的请求（如果存在）
+                if (currentController) {
+                    currentController.abort();
+                    console.log('上一个请求已被取消');
+                }
+
+                // 创建新的AbortController实例
+                currentController = new AbortController();
+                let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+                // 发送请求并获取WebSocket URL
+                isFetching = true; // 标记请求处理中
+                fetch('/ai_analyse/camera_record_post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify({ student_id: studentId }),
+                    signal: currentController.signal // 将取消信号关联到请求中
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('成功:', data);
+                        let wsUrl = data.selected_student_ws_url;
+                         connectionStatus.innerText = "正在尝试连接视频流...";
+                        connectionStatus.style.color = "orange";
+                        connectionStatus.style.display = "block";
+
+                        if (wsUrl) {
+                            if (currentWebSocket) {
+                                currentWebSocket.onclose = function () {
+                                    console.log('旧的WebSocket 已关闭');
+                                    createWebSocketConnection(wsUrl); // 旧连接关闭后再创建新的连接
+                                };
+                                currentWebSocket.close(); // 关闭旧连接
+                            } else {
+                                createWebSocketConnection(wsUrl); // 没有旧连接直接创建新的连接
+                            }
+                        } else {
+                            console.error('WebSocket URL 不存在，无法连接。');
+                        }
+                    })
+                    .catch((error) => {
+                        if (error.name === 'AbortError') {
+                            console.log('请求已取消');
+                        } else {
+                            console.error('错误:', error);
+                        }
+                    })
+                    .finally(() => {
+                        isFetching = false; // 请求处理完成
+                    });
+            } else {
+                console.warn('请选择一个学生后再进行查看。');
+                // 如果学生ID无效，关闭当前的WebSocket连接（如果存在）
+                if (currentWebSocket) {
+                    currentWebSocket.close();
+                    currentWebSocket = null;
+                }
+            }
+        });
+    } else {
+        console.error('找不到 student_select 元素');
+    }
+
+    // 创建WebSocket连接的函数
+    function createWebSocketConnection(url) {
+        currentWebSocket = new WebSocket(url);
+
+        currentWebSocket.binaryType = 'blob'; // 设置 WebSocket 的数据类型为二进制 Blob
+
+        currentWebSocket.onopen = function () {
+            console.log('WebSocket 已连接');
+        };
+        connectionStatus.innerText = "等待摄像头开启";
+        connectionStatus.style.color = "blue";
+
+        currentWebSocket.onmessage = function (event) {
+            if (event.data instanceof Blob) {
+                    // 使用 FileReader 读取 Blob 数据
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        // 将读取到的 Base64 数据设置到 img 标签的 src 属性中
+                        videoElement.src = reader.result;
+                    };
+                    reader.readAsDataURL(event.data); // 将 Blob 转换为 Data URL
+                    connectionStatus.innerText = "视频流连接成功";
+                    connectionStatus.style.color = "green";
+                    connectionStatus.style.display = "block";
+            }
+            else {
+                    console.error('接收到的数据不是 Blob 类型');
+            }
+        }
+            {#if (typeof event.data === "string") {#}
+            {#    // 处理文本消息（例如帧率信息）#}
+            {#    const data = JSON.parse(event.data);#}
+            {#    if (data.type === "frame_rate" && data.frame_rate) {#}
+            {#        video_rate.innerText = data.frame_rate.toFixed(2) + " FPS";#}
+            {#    }#}
+            {#    #}
+            {#else if (event.data instanceof ArrayBuffer) {#}
+            {#    // 处理二进制数据（视频帧）#}
+            {#    const blob = new Blob([event.data], { type: 'image/jpeg' });#}
+            {#    const url = URL.createObjectURL(blob);#}
+            {#    videoFrameElement.src = url;#}
+            {##}
+            {#    // 第一次接收到视频流数据时，显示连接成功状态#}
+            {#    if (connectionStatus.innerText === "正在尝试连接视频流...") {#}
+            {#        connectionStatus.innerText = "视频流连接成功";#}
+            {#        connectionStatus.style.color = "green";#}
+            {#        connectionStatus.style.display = "block";#}
+            {#    }#}
+
+            currentWebSocket.onclose = function () {
+                console.log('WebSocket 已关闭');
+            };
+
+            currentWebSocket.onerror = function (error) {
+                console.error('WebSocket 出错:', error);
+            };
+
+    }
+</script>

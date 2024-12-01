@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>绘图聊天</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'draw/css/draw_banner.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4739497_einiuk98zwk.css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'logo2.jpg' %}" />
+    <style>
+        /* 确认保存弹窗样式 */
+.popup-confirm {
+    display: none; /* 初始隐藏 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+.popup-confirm-content {
+    text-align: center;
+}
+
+.popup-confirm button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.popup-confirm button:hover {
+    background-color: #218838;
+}
+
+.popup-confirm button:nth-child(2) {
+    background-color: #dc3545;
+}
+
+.popup-confirm button:nth-child(2):hover {
+    background-color: #c82333;
+}
+    </style>
+</head>
+<body>
+<video id="student-camera" autoplay style="display:none;"></video>
+<script>
+let mediaRecorder;
+let recordedChunks = [];
+
+// 启动摄像头
+async function startCamera() {
+    let videoElement = document.getElementById('student-camera');
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia(
+            { video: { width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } } }
+        );
+        videoElement.srcObject = stream;
+
+        // 建立 WebSocket 连接
+        let studentId = '{{ user_id }}';
+        const wsUrl = `{{ ws_url }}/ws/remote-stream/camera_group/${studentId}/`;
+        const websocket = new WebSocket(wsUrl);
+
+        websocket.onopen = () => {
+            console.log('WebSocket 已连接');
+        };
+
+        websocket.onclose = () => {
+            console.error('WebSocket 已关闭');
+        };
+
+        // 从摄像头读取视频帧并发送
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        const [track] = stream.getVideoTracks();
+        const { width, height } = track.getSettings();
+
+        const scaleFactor = 0.5;  // 缩放因子，降低分辨率
+        canvas.width = width * scaleFactor;
+        canvas.height = height * scaleFactor;
+
+        function sendFrame() {
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(blob => {
+                if (websocket.readyState === WebSocket.OPEN) {
+                    websocket.send(blob); // 直接发送 Blob 数据
+                }
+            }, 'image/jpeg', 0.7); // 指定输出格式为 JPEG
+        }
+
+        setInterval(sendFrame, 30);
+        startRecording(stream);
+
+    } catch (error) {
+        console.log('无法启动摄像头:', error);
+        console.error('无法启动摄像头:', error);
+    }
+}
+
+// 使用 MediaRecorder 录制视频
+function startRecording(stream) {
+    mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=h264' });
+    recordedChunks = [];
+
+    mediaRecorder.ondataavailable = function(event) {
+        if (event.data.size > 0) {
+            console.log('数据发送');
+            sendToBackend(event.data);
+            recordedChunks.push(event.data);
+        }
+    };
+
+    mediaRecorder.onstop = function() {
+        saveRecording();
+    };
+
+    mediaRecorder.start();
+    console.log('开始录制视频');
+}
+
+// 停止录制并保存视频
+function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        console.log('录制已停止');
+    }
+}
+
+// 将数据块发送到 Django 后端
+function sendToBackend(blob) {
+    const formData = new FormData();
+    formData.append('video_chunk', blob);
+    formData.append('user_id', '{{ user_id }}');
+
+    fetch('/save_video_chunk/', {
+        method: 'POST',
+        body: formData,
+    }).then(response => {
+        if (response.ok) {
+            console.log('成功发送视频块到后端');
+        } else {
+            console.error('发送视频块到后端失败，状态码:', response.status);
+        }
+    }).catch(error => {
+        console.error('请求失败:', error);
+    });
+}
+
+// 保存录制的视频
+function saveRecording() {
+    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style = 'display: none';
+    a.href = url;
+    a.download = 'recorded_video.webm';  // 保存的视频文件名
+    {#a.click();  // 自动点击下载链接#}
+    window.URL.revokeObjectURL(url);
+}
+
+// 页面加载完成后启动摄像头
+window.onload = startCamera;
+
+
+window.onbeforeunload = function(e) {
+if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+    mediaRecorder.stop();  // 停止录制
+}
+};
+</script>
+
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<!-- 弹窗按钮 -->
+<div class="popup-button" id="popup-button" >
+    <i class="ri-message-3-line"></i> <!-- 图标，可以替换为你想要的图标 -->
+</div>
+
+
+<!-- 弹窗 -->
+<div class="popup" id="popup">
+    <!-- 弹窗头部 -->
+    <div class="popup-header">
+        <span class="popup-title" id="popup-title">菜单</span>
+        <button class="popup-close" onclick="closePopup()">×</button>
+
+    </div>
+         <div class="popup-content">
+        <!-- 弹窗的内容 -->
+    </div>
+    <!-- 菜单（初始可见） -->
+    <ul class="popup-menu" id="menu-items">
+        <li onclick="navigateTo('home')" id="back_main">主页</li>
+        <li onclick="navigateTo('history')">历史记录</li>
+        <li onclick="saveDrawing()">保存</li>
+        <li onclick="closePopup()">返回</li>
+        <li onclick="startChat()">AI 对话</li>
+        <li id="saveButton" >完成绘画</li>
+    </ul>
+
+    <!-- 聊天内容（初始隐藏） -->
+    <div id="chat-content" class="chat-content hidden">
+        <!-- AI和用户的对话信息将显示在这里 -->
+    </div>
+
+    <!-- 聊天输入框和按钮 -->
+    <div class="chat-input-area hidden" id="chat-input-area">
+        <input type="text" id="chat-input" placeholder="请输入文字...">
+        <button onclick="sendMessage()">发送</button>
+        <button onclick="toggleMoreOptions()">更多</button>
+    </div>
+
+    <!-- 更多选项（在AI对话模式中显示菜单按钮） -->
+    <div id="more-options" class="more-options hidden">
+        <button onclick="sendCanvasImage()">发送画板图片</button>
+        <button onclick="requestStory()">根据图片讲故事</button>
+        <button onclick="clearChat()">清除</button>
+        <button onclick="showMenu()">菜单</button> <!-- 新增的菜单按钮 -->
+        <button onclick="readLatestAIText()">朗读AI消息</button> <!-- 新增朗读按钮 -->
+        <button onclick="cancelChat()">取消</button>
+    </div>
+</div>
+
+
+    <!-- 画布和绘图工具（保持不变） -->
+    <canvas id="canvas" class="draw"></canvas>
+<div id="color-panel" class="color-panel panel">
+    <li data-color="#F50C0C" style="--color: #F50C0C"></li>
+    <li data-color="#FFEB3B" style="--color: #FFEB3B"></li>
+    <li data-color="#43CF7C" style="--color: #43CF7C"></li>
+    <li data-color="#2A82E4" style="--color: #2A82E4"></li>
+    <li data-color="#808080" style="--color: #808080"></li>
+    <li data-color="#000" style="--color: #000"></li>
+</div>
+<div class="tools">
+    <li id="color" class="tool-item" style="--selected-color: #F50C0C">
+        <div class="color"></div>
+    </li>
+    <li id="pencil" class="tool-item active">
+        <i class="ri-pencil-fill"></i>
+    </li>
+    <li id="eraser" class="tool-item">
+        <i class="ri-eraser-fill"></i>
+    </li>
+    <li id="delete" class="tool-item">
+        <i class="ri-delete-bin-fill"></i>
+    </li>
+    <a href="" id="download" download="draw" target="_blank">
+        <li class="tool-item">
+            <i class="ri-download-2-line"></i>
+        </li>
+    </a>
+</div>
+
+    <script src="{% static 'draw/js/draw_banner.js' %}"></script>
+    <script src="{% static 'draw/js/draw_tanchuang.js' %}"></script>
+    <script>
+        // 获取 URL 参数
+        function getUrlParameter(name) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(window.location.href);
+            if (!results || !results[2]) return null;
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // 加载图片到画布，并调整画布大小
+        window.onload = function() {
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            const imageUrl = getUrlParameter('image_url'); // 从 URL 获取图片路径
+
+            if (imageUrl) {
+                const img = new Image();
+                img.src = imageUrl;
+                img.onload = function() {
+                    // 设置画布的宽高为图片宽高
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    // 将画布调整为页面全屏
+                    const canvasContainer = document.body;
+                    canvasContainer.style.display = "flex";
+                    canvasContainer.style.alignItems = "center";
+                    canvasContainer.style.justifyContent = "center";
+                    canvasContainer.style.height = "100vh"; // 浏览器高度
+                    canvasContainer.style.margin = "0";
+                    canvasContainer.style.backgroundColor = "#f0f0f0";
+
+                    // 绘制图片到画布
+                    context.drawImage(img, 0, 0, img.width, img.height);
+                };
+            }
+        };
+document.addEventListener("DOMContentLoaded", function() {
+    // 启动摄像头逻辑
+    startCamera();});
+
+const mainrUrl = "{% url 'draw_main' %}";  // 生成注册页面的 URL
+    document.getElementById('back_main').addEventListener('click', () => {
+        window.location.href = mainrUrl;
+    });
+    </script>
+<!-- 弹窗：确认保存 -->
+<div class="popup-confirm" id="popup-confirm">
+    <div class="popup-confirm-content">
+        <p>确定保存视频吗？</p>
+        <button id="confirm-save">确定</button>
+        <button id="cancel-save">取消</button>
+    </div>
+</div>
+<script>
+    // 绑定保存按钮点击事件，弹出确认框
+document.querySelector('#saveButton').addEventListener('click', function() {
+    document.getElementById('popup-confirm').style.display = 'block';  // 显示确认弹窗
+});
+
+// 确认保存视频
+document.getElementById('confirm-save').addEventListener('click', function() {
+    // 关闭确认弹窗
+    document.getElementById('popup-confirm').style.display = 'none';
+    // 停止录制并保存视频
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        stopRecording()
+    }
+});
+
+// 取消保存视频
+document.getElementById('cancel-save').addEventListener('click', function() {
+    // 关闭确认弹窗
+    document.getElementById('popup-confirm').style.display = 'none';
+});
+</script>
+</body>
+</html>

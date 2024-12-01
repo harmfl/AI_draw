@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>draw history</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'draw/css/draw_history.css' %}">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4740817_e6fcgsix27i.css">
+    <style>
+        body {
+            background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("{% static 'draw/img/nailong1.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-box">
+        <div class="top-logo-title">
+            <img src="{% static 'draw/img/_20241030175706.jpg' %}" height="150%" class="logo-image">
+            <span class="title-font">童心绘语</span>
+        </div>
+
+        <div class="top-register-login" id="user-icon">
+            <span class="iconfont icon-yonghu"></span>
+            <span>你好, <span id="display_name">{{ display }}</span></span>
+            <div class="modal" id="user-modal">
+        <span class="modal-close" id="close-modal">&times;</span>
+        <p>当前账号：<span id="short_account">{{ short_account }}</span></p>
+        <button id="switch-user">
+            <span class="iconfont icon-qiehuanzhanghao"></span>切换用户
+        </button>
+    </div>
+        </div>
+    </div>
+
+    <div class="midle-box">
+        <div class="midle-left">
+           <div class="control" onclick="openPopup()">
+    <!-- 上传按钮 --><span class="iconfont icon-shangchuan1"></span>上传画作
+{#    <button id="upload-btn" class="btn btn-primary">上传画作</button>#}
+</div>
+
+<div id="upload-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <h2>上传画作</h2>
+        <form method="post" action="{% url 'upload_drawing' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="drawing-name">画作名称：</label>
+            <input type="text" id="drawing-name" name="name" required>
+
+            <label for="drawing-feedback">留言：</label>
+            <textarea id="drawing-feedback" name="feedback" rows="3"></textarea>
+
+            <label for="file-upload">选择文件：</label>
+            <input type="file" id="file-upload" name="image" required>
+
+            <button type="submit" class="btn btn-primary">提交</button>
+            <button type="button" class="btn btn-secondary" onclick="closePopup()">取消</button>
+        </form>
+    </div>
+</div>
+
+
+
+            <div class="control" id="back_main"><span class="iconfont icon-zhuye"></span>回到主页</div>
+            <div class="control" id="draw_banner"><span class="iconfont icon-huahua1"></span>开始绘画</div>
+
+            <div class="search-bar">
+                <form method="get" action="{% url 'history' %}">
+                    <input type="text" name="q" placeholder="请输入作品名称或留言信息" value="{{ query|default:'' }}">
+                    <button type="submit">搜索</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="midle-right">
+                <!-- 分页导航 -->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; 第一页</a>
+                        <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">上一页</a>
+                    {% endif %}
+
+                    <span class="current">
+                        第 {{ page_obj.number }} 页，共 {{ page_obj.paginator.num_pages }} 页
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">下一页</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">最后一页 &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{#<!-- 弹窗 -->#}
+{#<div id="upload-popup" class="popup" style="display: none;">#}
+{#    <div class="popup-content">#}
+{#        <h2>上传画作</h2>#}
+{#        <form method="post" action="{% url 'upload_drawing' %}" enctype="multipart/form-data">#}
+{#            {% csrf_token %}#}
+{#            <label for="drawing-name">画作名称：</label>#}
+{#            <input type="text" id="drawing-name" name="name" placeholder="请输入画作名称" required>#}
+{##}
+{#            <label for="drawing-feedback">留言：</label>#}
+{#            <textarea id="drawing-feedback" name="feedback" placeholder="请输入留言" rows="3"></textarea>#}
+{##}
+{#            <label for="file-upload">选择文件：</label>#}
+{#            <input type="file" id="file-upload" name="image" accept="image/*" required>#}
+{##}
+{#            <button type="submit" class="btn btn-primary">提交</button>#}
+{#            <button type="button" id="cancel-btn" class="btn btn-secondary">取消</button>#}
+{#        </form>#}
+{#    </div>#}
+{#</div>#}
+<div class="artwork-gallery">
+    {% if page_obj.object_list %}
+        {% for artwork in page_obj.object_list %}
+            <div class="list-of-artwork">
+                 <a href="/draw/draw_banner/?image_url={{ artwork.image.url }}">
+                <img src="{{ artwork.image.url }}" alt="画作" style="cursor: pointer;">
+            </a>
+                <h2>{{ artwork.name|default:"未命名" }}</h2>
+                <p>作者：{{ artwork.user.username }}</p>
+                <p>留言：{{ artwork.feedback|default:"暂无留言" }}</p>
+                <p>创建时间：{{ artwork.created_at }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>没有找到匹配的作品。</p>
+    {% endif %}
+</div>
+
+</body>
+<script src="{% static 'draw/js/draw_history.js' %}"></script>
+<script>
+    const registerUrl = "{% url 'login' %}";  // 生成注册页面的 URL
+    document.getElementById('switch-user').addEventListener('click', () => {
+        window.location.href = registerUrl;
+    });
+
+    const mainrUrl = "{% url 'draw_main' %}";  // 生成注册页面的 URL
+    document.getElementById('back_main').addEventListener('click', () => {
+        window.location.href = mainrUrl;
+    });
+
+    const drawUrl = "{% url 'draw_banner' %}";  // 生成注册页面的 URL
+    document.getElementById('draw_banner').addEventListener('click', () => {
+        window.location.href = drawUrl;
+    });
+</script>
+</html>

@@ -1,0 +1,152 @@
+[
+    {
+        "frame": 0,
+        "label": "sad",
+        "confidence": 0.62
+    },
+    {
+        "frame": 0,
+        "label": "sad",
+        "confidence": 0.5
+    },
+    {
+        "frame": 1,
+        "label": "sad",
+        "confidence": 0.6
+    },
+    {
+        "frame": 1,
+        "label": "sad",
+        "confidence": 0.53
+    },
+    {
+        "frame": 2,
+        "label": "sad",
+        "confidence": 0.62
+    },
+    {
+        "frame": 2,
+        "label": "sad",
+        "confidence": 0.55
+    },
+    {
+        "frame": 3,
+        "label": "sad",
+        "confidence": 0.6
+    },
+    {
+        "frame": 3,
+        "label": "sad",
+        "confidence": 0.5
+    },
+    {
+        "frame": 4,
+        "label": "sad",
+        "confidence": 0.58
+    },
+    {
+        "frame": 4,
+        "label": "sad",
+        "confidence": 0.47
+    },
+    {
+        "frame": 5,
+        "label": "sad",
+        "confidence": 0.61
+    },
+    {
+        "frame": 5,
+        "label": "sad",
+        "confidence": 0.43
+    },
+    {
+        "frame": 6,
+        "label": "sad",
+        "confidence": 0.58
+    },
+    {
+        "frame": 6,
+        "label": "sad",
+        "confidence": 0.41
+    },
+    {
+        "frame": 7,
+        "label": "sad",
+        "confidence": 0.57
+    },
+    {
+        "frame": 7,
+        "label": "sad",
+        "confidence": 0.44
+    },
+    {
+        "frame": 8,
+        "label": "sad",
+        "confidence": 0.58
+    },
+    {
+        "frame": 8,
+        "label": "sad",
+        "confidence": 0.52
+    },
+    {
+        "frame": 9,
+        "label": "sad",
+        "confidence": 0.57
+    },
+    {
+        "frame": 9,
+        "label": "sad",
+        "confidence": 0.5
+    },
+    {
+        "frame": 10,
+        "label": "sad",
+        "confidence": 0.58
+    },
+    {
+        "frame": 10,
+        "label": "sad",
+        "confidence": 0.51
+    },
+    {
+        "frame": 11,
+        "label": "sad",
+        "confidence": 0.59
+    },
+    {
+        "frame": 11,
+        "label": "sad",
+        "confidence": 0.47
+    },
+    {
+        "frame": 12,
+        "label": "sad",
+        "confidence": 0.6
+    },
+    {
+        "frame": 12,
+        "label": "sad",
+        "confidence": 0.47
+    },
+    {
+        "frame": 13,
+        "label": "sad",
+        "confidence": 0.59
+    },
+    {
+        "frame": 13,
+        "label": "sad",
+        "confidence": 0.48
+    },
+    {
+        "frame": 14,
+        "label": "sad",
+        "confidence": 0.61
+    },
+    {
+        "frame": 14,
+        "label": "sad",
+        "confidence": 0.45
+    }
+]

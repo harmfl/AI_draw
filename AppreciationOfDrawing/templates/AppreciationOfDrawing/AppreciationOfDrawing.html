@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'AppreciationOfDrawing/css/AppreciationOfDrawing.css' %}">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4740817_e6fcgsix27i.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4753341_rsqucxavct.css">
+</head>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("{% static 'draw/img/nailong1.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+<body>
+    <div class="top-box">
+        <div class="top-logo-title">
+            <img src="{% static 'draw/img/_20241030175706.jpg' %}" height="150%" class="logo-image">
+            <span class="title-font">ai 绘画</span>
+        </div>
+
+        <div class="top-register-login" id="user-icon">
+            <span class="iconfont icon-yonghu"></span>
+            <span>你好, <span id="display_name">{{ display }}</span></span>
+            <div class="modal" id="user-modal">
+        <span class="modal-close" id="close-modal">&times;</span>
+        <p>当前账号：<span id="short_account">{{ short_account }}</span></p>
+        <button id="switch-user">
+            <span class="iconfont icon-qiehuanzhanghao"></span>切换用户
+        </button>
+    </div>
+        </div>
+    </div>
+
+    <div class="middle-box">
+    <div class="middle-left">
+        <div class="middle-li button-hover"><span class="iconfont icon-huidaozhuye"></span> 查看画作</div>
+        <div class="middle-li button-hover" onclick="loadRecommendations()">
+    <span class="iconfont icon-qunfengcainixihuan"></span> 猜你喜欢
+</div>
+
+        <div class="middle-li button-hover" onclick="loadFavorites()"><span class="iconfont icon-favorite"></span> 我的收藏</div>
+        <div class="middle-li button-hover"><span class="iconfont icon-huidaozhuye" id="back_main"></span>回到主页</div>
+        <div class="middle-li button-hover" id="draw_banner"><span class="iconfont icon-huahua"></span> 开始画画</div>
+    </div>
+        <!-- 搜索框 -->
+    <div class="middle-botton">
+        <form method="get" class="search-form">
+            <input type="text" name="name" class="search-input" placeholder="作品名称" value="{{ request.GET.name }}">
+            <input type="text" name="author" class="search-input" placeholder="作者" value="{{ request.GET.author }}">
+            <input type="text" name="year" class="search-input" placeholder="年份" value="{{ request.GET.year }}">
+            <select name="tag" class="search-select">
+                <option value="">品类</option>
+                {% for tag_key, tag_name in tag_choices %}
+                    <option value="{{ tag_key }}" {% if request.GET.tag == tag_key %}selected{% endif %}>{{ tag_name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="search-button">搜索</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+    <!-- 作品展示区域 -->
+    <div class="art-box">
+        {% for drawing in page_obj %}
+            <div class="art-card">
+                <a href="{% url 'drawing_detail' drawing.DrawingID %}" class="art-link">
+                    <div class="art-image-wrapper">
+                        <img src="{{ drawing.DrawingPicture.url }}" alt="{{ drawing.DrawingName }}" class="art-image">
+                    </div>
+                    <div class="art-info">
+                        <h3>{{ drawing.DrawingName }}</h3>
+                        <p><span class="iconfont icon-liulanliang"></span>点赞数: <span id="likes_{{ drawing.DrawingID }}">{{ drawing.likes }}</span></p>
+                        <p><span class="iconfont icon-dianzan_kuai"></span>浏览量: {{ drawing.views }}</p>
+                    </div>
+                </a>
+                <button class="art-button like-button" onclick="updateCount('likes', {{ drawing.DrawingID }})"><span class="iconfont icon-dianzan"></span>点赞</button>
+                {% if user.is_authenticated %}
+                    <button class="art-button favorite-button" onclick="toggleFavorite({{ drawing.DrawingID }})"><span class="iconfont icon-shoucang1"></span>收藏</button>
+                {% else %}
+                    <a href="{% url 'login' %}?next={{ request.path }}" class="art-button favorite-button">登录后可收藏</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <!-- 分页控制 -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page=1">&laquo; 第一页</a>
+                <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.previous_page_number }}">上一页</a>
+            {% endif %}
+
+            <span class="current">
+                第 {{ page_obj.number }} 页 / 共 {{ page_obj.paginator.num_pages }} 页
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.next_page_number }}">下一页</a>
+                <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.paginator.num_pages }}">最后一页 &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+<script>
+    const mainrUrl = "{% url 'draw_main' %}";  // 生成注册页面的 URL
+    document.getElementById('back_main').addEventListener('click', () => {
+        window.location.href = mainrUrl;
+    });
+    const drawUrl = "{% url 'draw_banner' %}";  // 生成注册页面的 URL
+    document.getElementById('draw_banner').addEventListener('click', () => {
+        window.location.href = drawUrl;
+    });
+</script>
+
+</body>
+<script src="{% static 'AppreciationOfDrawing/js/AppreciationOfDrawing.js' %}"></script>
+</html>

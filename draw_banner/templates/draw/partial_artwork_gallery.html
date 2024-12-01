@@ -1,0 +1,11 @@
+<div class="artwork-gallery">
+    {% for artwork in artworks %}
+        <div class="artwork-item">
+            <img src="{{ artwork.image.url }}" alt="{{ artwork.title }} ">
+            <p class="artwork-title">{{ artwork.author }} 《{{ artwork.title }}》</p>
+            <p class="artwork-stats">查看数: {{ artwork.views }} | 点赞数: {{ artwork.likes }}</p>
+        </div>
+    {% empty %}
+        <p>暂无作品。</p>
+    {% endfor %}
+</div>

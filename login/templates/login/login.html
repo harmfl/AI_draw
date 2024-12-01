@@ -1,0 +1,372 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="{% static 'logo2.jpg' %}" />
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>登录</title>
+
+    <style>
+
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    overflow: hidden;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom,#f1f4f9,#dff1ff);
+}
+section .color{
+    position: absolute;
+    filter: blur(150px);
+}
+
+section .color:nth-child(1){
+    top: -350px;
+    width: 600px;
+
+    height: 600px;
+
+    background: #ff359b;
+
+}
+
+section .color:nth-child(2){
+
+    bottom: -150px;
+
+    left: 100px;
+
+    width: 500px;
+
+    height: 500px;
+
+    background: #fffd87;
+
+}
+
+section .color:nth-child(3){
+
+    bottom: 50px;
+
+    right: 100px;
+
+    width: 500px;
+
+    height: 500px;
+
+    background: #00d2ff;
+
+}
+
+.box{
+
+    position: relative;
+
+}
+
+.box .square{
+
+    position: absolute;
+
+    backdrop-filter: blur(5px);
+
+    box-shadow: 0 25px 45px rgb(0,0,0,0.1);
+
+    border: 1px solid rgb(255,255,255,0.5);
+
+    border-right: 1px solid rgb(255,255,255,0.2);
+
+    border-bottom: 1px solid rgb(255,255,255,0.2);
+
+    background:rgb(255,255,255,0.1);
+
+    border-radius: 10px;
+
+    animation: animate 10s linear infinite;
+
+    animation-delay: calc(-1s*var(--i));
+
+}
+
+/* 动画 */
+
+@keyframes animate{
+    0%,100%{
+        transform: translateY(-40px);
+    }
+    50%{
+        transform: translate(20px);
+    }
+}
+
+.box .square:nth-child(1){
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+}
+
+.box .square:nth-child(2){
+    top: 150px;
+    left: -100px;
+    width: 120px;
+    height: 120px;
+    z-index: 2;
+}
+
+.box .square:nth-child(3){
+    bottom: 50px;
+    right: -60px;
+    width: 80px;
+    height: 80px;
+    z-index: 2;
+}
+
+.box .square:nth-child(4){
+    bottom: -80px;
+    left: 100px;
+    width: 50px;
+    height: 50px;
+}
+
+.box .square:nth-child(5){
+    top: -90px;
+    left: 140px;
+    width: 60px;
+    height: 60px;
+}
+
+.container{
+    position: relative;
+    width:400px;
+    min-height: 400px;
+    background:rgb(255,255,255,0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgb(0,0,0,0.1);
+    border: 1px solid rgb(255,255,255,0.5);
+    border-right: 1px solid rgb(255,255,255,0.2);
+    border-bottom: 1px solid rgb(255,255,255,0.2);
+}
+
+.form{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 40px;
+}
+
+.form h2{
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+
+}
+
+.form h2::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: #fff;
+
+}
+
+.form .inputBox{
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.form .inputBox input{
+    width: 100%;
+    background: rgb(255,255,255,0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgb(255,255,255,0.5);
+    border-right: 1px solid rgb(255,255,255,0.2);
+    border-bottom: 1px solid rgb(255,255,255,0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgb(0,0,0,0.05);
+}
+
+.form .inputBox input::placeholder{
+
+    color: #fff;
+
+}
+
+.form .inputBox input[type="submit"]{
+
+    background: #fff;
+
+    color: #666;
+
+    max-width: 100px;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+
+    font-weight: 600;
+
+}
+
+.forget{
+
+    margin-top: 5px;
+
+    color: #fff;
+
+}
+
+.forget a{
+
+    color: #fff;
+
+    font-weight: 600;
+
+}
+/* 针对 <p> 标签的样式 */
+form p {
+    margin-bottom: 20px;  /* 为每个表单字段之间增加一些间距 */
+}/* 针对 <label> 标签的样式 */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+/* 当输入框获得焦点时 */
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #007bff;
+}
+.inputBox select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.2); /* 使选择框背景透明，与页面背景融合 */
+    color: #333; /* 设置字体颜色 */
+    outline: none;
+    appearance: none; /* 隐藏浏览器默认的下拉箭头以便自定义 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.inputBox select:hover,
+.inputBox select:focus {
+    border-color: #007bff; /* 鼠标移入或获得焦点时边框变成蓝色 */
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+/* 改变选择框的箭头样式 */
+.inputBox select::after {
+    content: '\25BC'; /* 使用 unicode 来表示箭头 */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #333;
+}
+    </style>
+
+</head>
+
+<body>
+    <section>
+
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">
+            <div class="square" style="--i:0;"></div>
+            <div class="square" style="--i:1;"></div>
+            <div class="square" style="--i:2;"></div>
+            <div class="square" style="--i:3;"></div>
+            <div class="square" style="--i:4;"></div>
+            <div class="container">
+                <div class="form">
+                    <h2>登录</h2>
+                    <form method="post" action="{% url 'login' %}">
+                          {% csrf_token %}
+    <div class="inputGroup">
+        <div class="inputBox">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+        <div class="inputBox">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+        <div class="inputBox">
+        <label for="{{ form.identity.id_for_label }}">身份:</label>
+        {{ form.identity }}
+        <div class="error-message" id="identity-error">
+            {{ form.identity.errors }}
+        </div>
+    </div>
+    </div>
+    <div class="inputBox">
+        <input type="submit" value="Login">
+    </div>
+                        {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red;">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                         <p class="forget">还没有账号？<a href="{% url 'register' %}">注册</a></p>  <!-- 链接到注册页面 -->
+                    </form>
+                    <!-- 显示错误信息 -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

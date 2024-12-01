@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'analyse/css/analyse.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4740817_e6fcgsix27i.css">
+</head>
+<body>
+    <div class="top-box">
+        <div class="top-logo-title">
+            <img src="{% static 'draw/img/_20241030175706.jpg' %}" height="150%" class="logo-image">
+            <span class="title-font">ai 绘画</span>
+        </div>
+
+        <div class="top-register-login" id="user-icon">
+            <span class="iconfont icon-yonghu"></span>
+            <span>你好, <span id="display_name">{{ display }}</span></span>
+            <div class="modal" id="user-modal">
+        <span class="modal-close" id="close-modal">&times;</span>
+        <p>当前账号：<span id="short_account">{{ short_account }}</span></p>
+        <button id="switch-user">
+            <span class="iconfont icon-qiehuanzhanghao"></span>切换用户
+        </button>
+    </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'analyse/js/analyse.js' %}"></script>
+</html>

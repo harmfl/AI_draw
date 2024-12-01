@@ -1,0 +1,130 @@
+// ===================================
+// Sidebar
+// ===================================
+
+.left-sidebar {
+  width: $sidebar-width-full;
+  background-color: $white;
+  position: absolute;
+  transition: 0.2s ease-in;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.02);
+  height: 100%;
+  z-index: 11;
+  .scroll-sidebar {
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100% - 20px);
+    .simplebar-track.simplebar-horizontal {
+      visibility: hidden !important;
+    }
+  }
+}
+
+.nav-small-cap {
+  padding: 15px 0;
+  margin-top: 15px;
+  color: $sidebar-text;
+  font-weight: 500;
+  .nav-small-cap-icon {
+    display: none;
+  }
+}
+
+.sidebar-nav {
+  ul {
+    >.sidebar-item {
+      border-bottom: 1px solid $border-color;
+    }
+    .sidebar-item {      
+      .sidebar-link {
+        color: $sidebar-text;
+        display: flex;
+        white-space: nowrap;
+        align-items: center;
+        line-height: 25px;
+        position: relative;
+        margin: 12px 0;
+        .aside-icon{
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .sidebar-list {
+    .sidebar-list-item {
+      padding: 8px 0;
+    }
+  }
+}
+
+.collapse.in {
+  display: block;
+}
+
+// ===================================
+// Color Activing and Hover
+// ===================================
+.warning-hover-bg,
+.danger-hover-bg,
+.success-hover-bg,
+.primary-hover-bg,
+.indigo-hover-bg {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 30px;
+    height: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    transition: all 0.4s ease-in-out;
+  }
+
+  &:hover,
+  &.btn-toggle[aria-expanded="true"] {
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+.selected {
+  .warning-hover-bg,
+  .danger-hover-bg,
+  .success-hover-bg,
+  .primary-hover-bg,
+  .indigo-hover-bg {
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+.danger-hover-bg::before {
+  background-color: $light-danger;
+}
+
+.warning-hover-bg::before {
+  background-color: $light-warning;
+}
+
+.success-hover-bg::before {
+  background-color: $light-success;
+}
+
+.primary-hover-bg::before {
+  background-color: $light-primary;
+}
+
+.indigo-hover-bg::before {
+  background-color: $light-indigo;
+}
