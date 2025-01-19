@@ -132,5 +132,5 @@ python manage.py migrate
 ![账号关联](https://github.com/user-attachments/assets/78714803-fef6-4442-af66-6062c7351473)
 ![管理关联](https://github.com/user-attachments/assets/b3ce7361-680a-4619-b863-3ceb8a6dc2fa)
 ![查看学生画作](https://github.com/user-attachments/assets/5074cace-60b7-49d6-88f0-f99cef8a88ab)
-![摄像头页面](https://github.com/user-attachments/assets/01e6d308-298c-4baa-8fc7-9a83dff26152)
-![绘画状态分析](https://github.com/user-attachments/assets/df38b638-688a-457f-a17e-81422296f73a)
+ <!-- ![摄像头页面](https://github.com/user-attachments/assets/01e6d308-298c-4baa-8fc7-9a83dff26152) -->
+ <!-- ![绘画状态分析](https://github.com/user-attachments/assets/df38b638-688a-457f-a17e-81422296f73a) -->
